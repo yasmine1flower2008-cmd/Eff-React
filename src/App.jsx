@@ -1,33 +1,29 @@
-import Evenements from './Evenements.jsx';
-import Expert from './Expert.jsx';
-import expertsData from './data.js';
 import Experts1 from './Expert1.jsx';
+import Expert2 from './Expert2.jsx';
 import Formulaire from './formulaire.jsx';
-
+import { BrowserRouter, Route, Routes, Link } from 'react-router';
 
 function App() {
-    const listeEvenementsExpert = expertsData[0]["événements"];
-
     return (
-      <>
-        <div>
-            <Evenements evenements={listeEvenementsExpert} />
-        </div>
+        <BrowserRouter>
+            <div className="min-h-screen bg-gray-50">
+                <nav className="bg-indigo-600 text-white p-4 shadow-md mb-6">
+                    <div className="max-w-6xl mx-auto flex gap-6 font-semibold">
+                        <Link to="/Experts1" className="hover:underline">Experts1</Link>
+                        <Link to="/Experts2" className="hover:underline">Experts2</Link>
+                        <Link to="/formulaire" className="hover:underline">Formulaire</Link>
+                    </div>
+                </nav>
 
-        <div className="p-6 max-w-6xl mx-auto rounded-lg shadow-md p-6 mb-6 bg-white border border-blue-300">
-            <ul>
-                {expertsData.map((expert,i) => (
-                    <Expert key={i} expert={expert} />
-                ))}
-            </ul>
-        </div>
-
-        <div className="p-6 max-w-6xl mx-auto rounded-lg shadow-md p-6 mb-6 bg-white border border-violet-900">
-            <Experts1 />
-        </div>
-
-        <Formulaire />
-      </>
+                <div className="max-w-6xl mx-auto px-4">
+                    <Routes>
+                        <Route path="/Experts1" element={<Experts1 />} />
+                        <Route path="/Experts2" element={<Expert2 />} />
+                        <Route path="/formulaire" element={<Formulaire />} />
+                    </Routes>
+                </div>
+            </div>
+        </BrowserRouter>
     );
 }
 
